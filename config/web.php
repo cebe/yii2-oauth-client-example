@@ -23,21 +23,22 @@ $config = [
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [
-                'github' => [
+                'github' => [ // github added to learn and understand our own client
                     'class' => \Da\User\AuthClient\GitHub::class,
-                    'clientId' => '8dd1f8ea4d3780a106e9',
-                    'clientSecret' => '6a1e555db26ca50bdc346668c9542febf1edaf72'
+                    'clientId' => '',
+                    'clientSecret' => ''
                 ],
+                // 'oauthserver' => [
+                //     'class' => \app\components\OauthServerDaClient::class,
+                //     'clientId' => 1,
+                //     'clientSecret' => 'secrets65df65sd65f4s6d45f',
+                // ],
                 'oauthserver' => [
                     'class' => \app\components\OauthServerDaClient::class,
-                    'clientId' => 1,
-                    'clientSecret' => 'secrets65df65sd65f4s6d45f',
-                    // 'normalizeUserAttributeMap' => [
-                    //     'id' => 'id',
-                    //     'email' => 'email',
-                    //     'username' => 'username',
-                    // ],
-                ]
+                    'clientId' => 3,
+                    'clientSecret' => 'cK_C3GZiGTO2uGW9HY7DNF-vA-56DVNyAypvE2bn9Ey-wF1JcmAsk7N2DPQ_pZ7d
+',
+                ],
             ]
         ],
         'request' => [

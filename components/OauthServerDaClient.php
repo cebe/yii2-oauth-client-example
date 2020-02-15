@@ -36,4 +36,18 @@ class OauthServerDaClient extends \app\components\OauthServerClient implements A
             ? $this->getUserAttributes()['username']
             : null;
     }
+
+    protected function defaultViewOptions()
+    {
+        return [
+            // 'popupWidth' => 860,
+            // 'popupHeight' => 480,
+            'widget' => [
+                'class' => \app\components\OauthChoiceItem::class,
+                // 'popupWidth' => 860,
+                // 'popupHeight' => 480,
+                // 'client' => $this
+            ]
+        ];
+    }
 }

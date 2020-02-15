@@ -100,12 +100,12 @@ class OauthServerClient extends OAuth2
         $request->getHeaders()->set('Authorization', 'Bearer '. $accessToken->getToken());
     }
 
-    protected function defaultNormalizeUserAttributeMap()
-    {
-        return [
-            // 'id' => 'id',
-            'email' => 'email',
-            'username' => 'username',
-        ];
-    }
+    // protected function defaultNormalizeUserAttributeMap()
+    // {
+    //     return [
+    //         // 'id' => 'id',
+    //         'email' => 'email',
+    //         'username' => 'username',
+    //     ];
+    // }
 }
