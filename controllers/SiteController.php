@@ -24,6 +24,9 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
+    // in order to see e.g. how to access access_token and call resource server API, set it to true and set Oauth server's public.key file path accordingly in method `getServerPublicKeyPath`
+    public $showApiCallExample = false;
+
     public function behaviors()
     {
         return [
@@ -77,11 +80,40 @@ class SiteController extends Controller
         // Way to get token's (JWT access_token) custom data here
         // $this->getTokenData(Yii::$app->getSession()->get('app\components\OauthServerDaClient_oauthserver_token')->getParams()['access_token']);
         // die;
-        return $this->render('index');
+
+        // Example of how to call API of resource server
+        $content = '';
+        if (empty(Yii::$app->getSession()->get('app\components\OauthServerDaClient_oauthserver_token')) || $this->showApiCallExample === false) {
+            goto gotolabel;
+        }
+
+        $client = new \yii\httpclient\Client();
+        $response = $client->createRequest()
+            ->setMethod('POST')
+            ->setUrl('http://localhost:7876/web/index.php?r=api/default/custom-data')
+            ->addHeaders(
+                ['Authorization' => 'Bearer '.$this->getTokenData(Yii::$app->getSession()->get('app\components\OauthServerDaClient_oauthserver_token')->getParams()['access_token'])]
+            )
+            ->send();
+
+
+
+        if ($response->isOk) {
+            $content = $response->content;
+            // print_r($response->content);
+        } else {
+            // print_r($response);
+            // echo "else string";
+        }
+        // die();
+
+        gotolabel:
+        return $this->render('index', ['content' => $content]);
     }
 
     /**
      * Displays homepage.
+     * Used when developing & debugging actionAuthorize (/authorize) of server. It can be ignored when the client is running fine
      *
      * @return string
      */
@@ -116,7 +148,7 @@ class SiteController extends Controller
     protected function getTokenData($jwt)
     {
         $token = (new Parser())->parse($jwt);
-        $publicKey = new CryptKey('TODO-Put file path here e.g. /var/www/html/oauthserver/pubblic.key');
+        $publicKey = new CryptKey($this->getServerPublicKeyPath());
         try {
             if ($token->verify(new Sha256(), $publicKey->getKeyPath()) === false) {
                 throw OAuthServerException::accessDenied('Access token could not be verified');
@@ -134,5 +166,11 @@ class SiteController extends Controller
         }
         // print_r($token->getHeaders()); die; // you can get custom geta here
         return $token;
+    }
+
+    public function getServerPublicKeyPath()
+    {
+        return __DIR__.'/../../yii2-oauth-server-example/public.key';
+        // or change accordingly to your folder structure e.g. /var/www/project/public.key
     }
 }

@@ -72,7 +72,6 @@ class OauthServerClient extends OAuth2
     {
 
         $attributes = $this->api('default/user', 'GET');
-        // var_dump($attributes); die;
         return $attributes;
     }
 
@@ -99,13 +98,4 @@ class OauthServerClient extends OAuth2
     {
         $request->getHeaders()->set('Authorization', 'Bearer '. $accessToken->getToken());
     }
-
-    // protected function defaultNormalizeUserAttributeMap()
-    // {
-    //     return [
-    //         // 'id' => 'id',
-    //         'email' => 'email',
-    //         'username' => 'username',
-    //     ];
-    // }
 }

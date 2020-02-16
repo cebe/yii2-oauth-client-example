@@ -15,7 +15,14 @@ $this->title = 'My Yii Application';
     </div>
 
     <div class="body-content">
-
+        <div class="row">
+            <div class="col-lg-12">
+                <?php if ($content) {
+                    echo 'Content from API call is :';
+                    echo '<code>'.$content.'</code>';
+                } ?>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-4">
                 <h2>Heading</h2>
