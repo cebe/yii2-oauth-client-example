@@ -13,7 +13,6 @@ namespace app\components;
 
 use Da\User\Contracts\AuthClientInterface;
 use app\components\OauhtServerClient;
-// use yii\authclient\clients\OauthServer as BaseOauthServerDaClient;
 
 class OauthServerDaClient extends \app\components\OauthServerClient implements AuthClientInterface
 {

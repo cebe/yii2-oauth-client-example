@@ -164,7 +164,7 @@ class SiteController extends Controller
         if ($token->validate($data) === false) {
             throw OAuthServerException::accessDenied('Access token is invalid');
         }
-        // print_r($token->getHeaders()); die; // you can get custom geta here
+        // print_r($token->getHeaders()); die; // you can get custom data of JWT data here
         return $token;
     }
 

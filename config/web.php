@@ -35,8 +35,8 @@ $config = [
                 // ],
                 'oauthserver' => [
                     'class' => \app\components\OauthServerDaClient::class,
-                    'clientId' => 3, // replace this
-                    'clientSecret' => 'cK_C3GZiGTO2uGW9HY7DNF-vA-56DVNyAypvE2bn9Ey-wF1JcmAsk7N2DPQ_pZ7d', // replace this
+                    'clientId' => 1, // replace this
+                    'clientSecret' => 'RD2LHVDuN9GmqoOD8kGD9NFTnyVYhlRLM1Vee-gnedasff81e4_ay7c0nQZ1xCKI', // replace this
                 ],
             ]
         ],
